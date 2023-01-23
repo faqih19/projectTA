@@ -29,9 +29,9 @@
             <tr>
               <td>{{$no++}}</td>
               <td>{{$ab->pegawai->id_pegawai}}</td>
-              <td>{{$ab->pegawai->Nama}}</td>
+              <td>{{$ab->pegawai->nama}}</td>
               <td>{{$ab->pegawai->jenis_kelamin}}</td>
-              <td>{{$ab->pegawai->Jabatan}}</td>
+              <td>{{$ab->pegawai->jabatan}}</td>
               <td class="text-center">
                 <input data-id="{{$ab->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Hadir" data-off="Tidak Hadir" {{ $ab->status ? 'checked' : '' }}>
               </td>
@@ -46,7 +46,6 @@
 
 <script>
   $('.toggle-class').change(function() {
-    console.log("sadas");
     var status = $(this).prop('checked') == true ? 1 : 0;
     var id = $(this).data('id');
     // var hadirr = 0;

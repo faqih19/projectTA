@@ -19,6 +19,10 @@
             <input type="text" class="form-control" placeholder="Masukan Nama" name="Nama">
           </div>
           <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">No HP</label>
+            <input type="number" class="form-control" placeholder="No HP" name="no_hp">
+          </div>
+          <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Jenis Kelamin</label>
             <input type="text" class="form-control" placeholder="Masukan Jenis Kelamin" name="jenis_kelamin">
           </div>
@@ -32,7 +36,7 @@
           </div>
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Gaji</label>
-            <input type="text" class="form-control" placeholder="Masukan Gaji" name="Gaji">
+            <input type="number" class="form-control" placeholder="Masukan Gaji" name="Gaji">
           </div>
       </div>
       <div class="modal-footer">
@@ -64,6 +68,12 @@
               <label>Nama</label>
               <div class="form-label" id="the-basics">
                 <input class="form-control" name="Nama" id="edit-Nama" type="text" placeholder="Masukan Nama" required>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label>No HP</label>
+              <div class="form-label" id="the-basics">
+                <input class="form-control" name="no_hp" id="edit-no_hp" type="text" required>
               </div>
             </div>
             <div class="mb-3">
@@ -156,6 +166,7 @@
             <tr class="text-center">
               <th>No</th>
               <th>Nama</th>
+              <th>No HP</th>
               <th>Jenis Kelamin</th>
               <th>Alamat</th>
               <th>Jabatan</th>
@@ -168,14 +179,15 @@
             @foreach ($pgw as $pg)
             <tr class="text-center">
               <td>{{$no++}}</td>
-              <td>{{$pg->Nama}}</td>
+              <td>{{$pg->nama}}</td>
+              <td>{{$pg->no_hp}}</td>
               <td>{{$pg->jenis_kelamin}}</td>
-              <td>{{$pg->Alamat}}</td>
-              <td>{{$pg->Jabatan}}</td>
-              <td>{{$pg->Gaji}}</td>
+              <td>{{$pg->alamat}}</td>
+              <td>{{$pg->jabatan}}</td>
+              <td>{{$pg->gaji}}</td>
               <td>
                 <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="" method="POST">
-                  <button type="button" class="btn btn-outline-warning btn-icon-text border-0" data-bs-toggle="modal" data-bs-target="#update" id="btn-edit-pegawai" data-id="{{$pg->id}}" data-Nama="{{$pg->Nama}}" data-jenis_kelamin="{{$pg->jenis_kelamin}}" data-Alamat="{{$pg->Alamat}}" data-Jabatan="{{$pg->Jabatan}}" data-Gaji="{{$pg->Gaji}}">
+                  <button type="button" class="btn btn-outline-warning btn-icon-text border-0" data-bs-toggle="modal" data-bs-target="#update" id="btn-edit-pegawai" data-id="{{$pg->id}}" data-nama="{{$pg->nama}}" data-jenis_kelamin="{{$pg->jenis_kelamin}}" data-alamat="{{$pg->alamat}}" data-jabatan="{{$pg->jabatan}}" data-no_hp="{{$pg->no_hp}} data-gaji=" {{$pg->gaji}}">
                     <i class="ti-reload btn-icon-prepend"></i>Ubah</button>
                   @csrf
                   @method('DELETE')
@@ -212,11 +224,12 @@
       success: function(res) {
         //  console.log(res);
         $('#edit-id').val(res[0].id);
-        $('#edit-Nama').val(res[0].Nama);
+        $('#edit-nama').val(res[0].nama);
+        $('#edit-no_hp').val(res[0].no_hp);
         $('#edit-jenis_kelamin').val(res[0].jenis_kelamin);
-        $('#edit-Alamat').val(res[0].Alamat);
-        $('#edit-Jabatan').val(res[0].Jabatan);
-        $('#edit-Gaji').val(res[0].Gaji);
+        $('#edit-alamat').val(res[0].alamat);
+        $('#edit-jabatan').val(res[0].jabatan);
+        $('#edit-gaji').val(res[0].gaji);
       }
     });
 
@@ -226,26 +239,6 @@
     $('#delete-id').val(id);
 
   });
-
-  // function edit(){
-
-  //     // var id = $('#btn-edit-barang').attr("data-id")
-  //     // var merk = $('#btn-edit-barang').attr("data-merk")
-  //     // var type = $('#btn-edit-barang').attr("data-type")
-
-  //     // $('#id_upd').val(id);
-  //     // $('#merk_upd').val(merk);
-  //     // $('#type_upd').val(type);
-
-  // }
-
-  // function update(ms){
-  //     $('#')
-  // }
-
-  // AJAX
-
-  //     });
 </script>
 
 @endsection

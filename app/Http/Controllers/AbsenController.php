@@ -50,8 +50,9 @@ class AbsenController extends Controller
 
         $idpegawai = $absen->id_pegawai;
 
+
         $checkAbsensi = DB::table('absensi')
-            ->selectRaw('(SELECT count(status) FROM absen WHERE status = 1 AND id_pegawai = "' . $idpegawai . '") as `jml_hadir`, (SELECT count(status) FROM absen WHERE status = 0 AND id_pegawai = "' . $idpegawai . '") as `jml_tidak_hadir`')
+            ->selectRaw('(SELECT count(status) FROM absensi WHERE status = 1 AND id_pegawai = "' . $idpegawai . '") as `jml_hadir`, (SELECT count(status) FROM absensi WHERE status = 0 AND id_pegawai = "' . $idpegawai . '") as `jml_tidak_hadir`')
             ->where('id_pegawai', $idpegawai)
             ->first();
 
@@ -68,8 +69,8 @@ class AbsenController extends Controller
 
             $getPegawai = Pegawai::findOrFail($idpegawai);
             $penggajian = new Penggajian;
-            $penggajian->nama = $getPegawai->Nama;
-            $penggajian->jabatan = $getPegawai->Jabatan;
+            $penggajian->nama = $getPegawai->nama;
+            $penggajian->jabatan = $getPegawai->jabatan;
             $penggajian->id_pegawai = $idpegawai;
             $penggajian->gaji_pokok = $gaji;
             $penggajian->jml_hadir = $absen;

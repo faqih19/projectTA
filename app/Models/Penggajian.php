@@ -9,9 +9,10 @@ class Penggajian extends Model
 {
     protected $table = 'penggajian';
     protected $primaryKey = 'id';
-
+    public $incrementing = false;
+    protected $keyType = 'char';
     protected $fillable = [
-        'id_pegawai',
+        'id_penggajian',
         'nama',
         'jenis_kelamin',
         'no_hp',

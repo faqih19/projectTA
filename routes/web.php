@@ -7,6 +7,7 @@ use App\Http\Controllers\LaporanPController;
 use App\Http\Controllers\LaporanBMController;
 use App\Http\Controllers\LaporanPenggajianController;
 use App\Http\Controllers\AbsenController;
+use App\Http\Controllers\PenggajianController;
 
 
 /*
@@ -32,7 +33,7 @@ Route::resource('/absen', '\App\Http\Controllers\AbsenController');
 Route::get('changeStatus', [AbsenController::class, 'changeStatus']);
 
 // Route::get('/kelola',[KelolaController::class, 'index']);
-Route::get('/gaji', [GajiPController::class, 'gajip']);
+Route::get('/gaji', [PenggajianController::class, 'gajip']);
 Route::get('/transaksi', [TransaksiController::class, 'transaksi']);
 Route::get('/datac', [DCPembayaranController::class, 'DCPembayaran']);
 Route::get('/laporanp', [LaporanPController::class, 'LaporanPenjualan']);
