@@ -9,13 +9,17 @@ class Pegawai extends Model
 {
     use HasFactory;
     public $table = "pegawai";
-
-    protected $fillabel=[
-        'Nama',
+    protected $primaryKey = 'id_pegawai';
+    public $incrementing = false;
+    protected $keyType = 'char';
+    protected $fillabel = [
+        'id_pegawai',
+        'nama',
+        'no_hp',
         'jenis_kelamin',
-        'Alamat',
-        'Jabatan',
-        'Gaji'
+        'alamat',
+        'jabatan',
+        'gaji'
     ];
 
     public function absen()
@@ -23,8 +27,9 @@ class Pegawai extends Model
         return $this->hasOne(Absen::class);
     }
 
-    public static function getPegawai($id){
-        $peg = pegawai::where('id', $id)->get();
-        return $peg;
+    public static function getPegawai($id_pegawai)
+    {
+        $pegawai = Pegawai::where('id_pegawai', $id_pegawai)->get();
+        return $pegawai;
     }
 }
