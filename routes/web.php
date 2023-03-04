@@ -29,6 +29,7 @@ Route::resource('/barang', '\App\Http\Controllers\BarangController');
 Route::resource('/kelola', '\App\Http\Controllers\KelolaController');
 Route::resource('/pegawai', '\App\Http\Controllers\PegawaiController');
 Route::resource('/user', '\App\Http\Controllers\UserController');
+Route::resource('/scan', '\App\Http\Controllers\ScanController');
 Route::resource('/absen', '\App\Http\Controllers\AbsenController');
 Route::get('changeStatus', [AbsenController::class, 'changeStatus']);
 
