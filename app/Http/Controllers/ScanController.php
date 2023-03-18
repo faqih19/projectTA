@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pegawai;
+use App\Models\Kelola;
 
 use Illuminate\Http\Request;
 use Alert;
 
-class PegawaiController extends Controller
+class ScanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class PegawaiController extends Controller
      */
     public function index()
     {
-        $data = Pegawai::all();
-        return view('pegawai.main')->with('pgw', $data);
+        $data = Kelola::all();
+        return view('Scan.main')->with('pgw', $data);
     }
 
     /**
@@ -38,19 +38,7 @@ class PegawaiController extends Controller
      */
     public function store(Request $request)
     {
-        $pg = new pegawai;
 
-        $pg->nama = $request->get('Nama');
-        $pg->no_hp = $request->get('no_hp');
-        $pg->jenis_kelamin = $request->get('jenis_kelamin');
-        $pg->alamat = $request->get('Alamat');
-        $pg->jabatan = $request->get('Jabatan');
-        $pg->gaji = $request->get('Gaji');
-
-        $pg->save();
-
-        Alert::success('Sukses bro', 'Data Geus di Tambah euy');
-        return redirect('/pegawai');
     }
 
     /**
@@ -61,8 +49,18 @@ class PegawaiController extends Controller
      */
     public function show($id)
     {
-        $pg = Pegawai::getPegawai($id);
-        return response()->json($pg);
+        $data = Kelola::where('kode_kendaraan',$id)->first();
+        if($data != null){
+            $response = $data;
+            $status = 1;
+        }else{
+            $response = "data tidak Ditemukan";
+            $status = 0;
+        }
+        return response()->json([
+            'data' => $response,
+            'state' => $status,
+        ]);
     }
 
     /**
@@ -73,7 +71,7 @@ class PegawaiController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -85,18 +83,7 @@ class PegawaiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $pg = Pegawai::where('id', $request->get('id'))
-            ->update([
-                'nama' => $request->get('Nama'),
-                'no_hp' => $request->get('no_hp'),
-                'jenis_kelamin' => $request->get('jenis_kelamin'),
-                'alamat' => $request->get('Alamat'),
-                'jabatan' => $request->get('Jabatan'),
-                'gaji' => $request->get('Gaji'),
-            ]);
 
-        Alert::success('Sukses', 'Data Berhasil Diubah!');
-        return redirect('/pegawai');
     }
 
     /**
@@ -107,10 +94,6 @@ class PegawaiController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        $pg = Pegawai::where('id', $request->get('id'))
-            ->delete();
 
-        Alert::success('Sukses', 'Data Berhasil Dihapus !');
-        return redirect('/pegawai');
     }
 }
