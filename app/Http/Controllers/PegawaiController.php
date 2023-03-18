@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Pegawai;
 
 use Illuminate\Http\Request;
@@ -40,12 +39,11 @@ class PegawaiController extends Controller
     {
         $pg = new pegawai;
 
-        $pg->nama = $request->get('Nama');
-        $pg->no_hp = $request->get('no_hp');
+        $pg->Nama = $request->get('Nama');
         $pg->jenis_kelamin = $request->get('jenis_kelamin');
-        $pg->alamat = $request->get('Alamat');
-        $pg->jabatan = $request->get('Jabatan');
-        $pg->gaji = $request->get('Gaji');
+        $pg->Alamat = $request->get('Alamat');
+        $pg->Jabatan = $request->get('Jabatan');
+        $pg->Gaji = $request->get('Gaji');
 
         $pg->save();
 
@@ -86,14 +84,13 @@ class PegawaiController extends Controller
     public function update(Request $request, $id)
     {
         $pg = Pegawai::where('id', $request->get('id'))
-            ->update([
-                'nama' => $request->get('Nama'),
-                'no_hp' => $request->get('no_hp'),
-                'jenis_kelamin' => $request->get('jenis_kelamin'),
-                'alamat' => $request->get('Alamat'),
-                'jabatan' => $request->get('Jabatan'),
-                'gaji' => $request->get('Gaji'),
-            ]);
+        ->update([
+            'Nama' => $request->get('Nama'),
+            'jenis_kelamin' => $request->get('jenis_kelamin'),
+            'Alamat' => $request->get('Alamat'),
+            'Jabatan' => $request->get('Jabatan'),
+            'Jabatan' => $request->get('Gaji'),
+        ]);
 
         Alert::success('Sukses', 'Data Berhasil Diubah!');
         return redirect('/pegawai');
@@ -108,9 +105,9 @@ class PegawaiController extends Controller
     public function destroy(Request $request, $id)
     {
         $pg = Pegawai::where('id', $request->get('id'))
-            ->delete();
+             ->delete();
 
-        Alert::success('Sukses', 'Data Berhasil Dihapus !');
-        return redirect('/pegawai');
+             Alert::success('Sukses', 'Data Berhasil Dihapus !');
+             return redirect('/pegawai');
     }
 }
