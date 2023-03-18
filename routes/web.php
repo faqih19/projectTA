@@ -30,11 +30,14 @@ Route::get('/', function () {
     return view('layout.dashboard');
 });
 Route::resource('/dashboard', '\App\Http\Controllers\DashboardController');
-Route::resource ('/barang', '\App\Http\Controllers\BarangController');
-Route::resource ('/kelola', '\App\Http\Controllers\KelolaController');
-Route::resource ('/pegawai', '\App\Http\Controllers\PegawaiController');
-Route::resource ('/user', '\App\Http\Controllers\UserController');
-Route::resource ('/absen', '\App\Http\Controllers\AbsenController');
+
+Route::resource('/barang', '\App\Http\Controllers\BarangController');
+Route::resource('/kelola', '\App\Http\Controllers\KelolaController');
+Route::resource('/pegawai', '\App\Http\Controllers\PegawaiController');
+Route::resource('/user', '\App\Http\Controllers\UserController');
+Route::resource('/scan', '\App\Http\Controllers\ScanController');
+Route::resource('/absen', '\App\Http\Controllers\AbsenController');
+Route::get('changeStatus', [AbsenController::class, 'changeStatus']);
 
 
 // Route::get('/kelola',[KelolaController::class, 'index']);
